@@ -26,6 +26,7 @@ public class Main {
         Quadcopter.posY();
         Quadcopter.posZ();
         Quadcopter.isFlying(Quadcopter.posZ);
+        System.out.println(Quadcopter.posX() + "x, " + Quadcopter.posY() + "y, " + Quadcopter.posZ() + "z");
         
     }
     
