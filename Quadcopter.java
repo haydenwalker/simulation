@@ -3,7 +3,9 @@ package simulation;
 public class Quadcopter {
 
     public static boolean isFlying;
-    public static int pos;
+    public static int posX;
+    public static int posY;
+    public static int posZ;
     public static int RPM1;
     public static int RPM2;
     public static int RPM3;
@@ -37,16 +39,34 @@ public class Quadcopter {
         
     }
     
-    public static int pos() {
+    public static int posZ() {
         
-        pos = 0;
-        return pos;
+        posZ = 0;
+        return posZ;
         
     }
     
-    public static boolean isFlying() {
+    public static int posY() {
         
-        isFlying = true;
+        posY = 0;
+        return posY;
+        
+    }
+    
+    public static int posX() {
+        
+        posX = 0;
+        return posX;
+        
+    }
+    
+    public static boolean isFlying(int posZ) {
+        
+        if(posZ > 0)
+            isFlying = true;
+        else
+            isFlying = false;
+            
         return isFlying;
         
     }
