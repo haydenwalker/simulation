@@ -10,6 +10,30 @@ public class Quadcopter {
     public static int RPM2;
     public static int RPM3;
     public static int RPM4;
+    public static int changeX;
+    public static int changeY;
+    public static int changeZ;
+    
+    public static int changeX(int RPM1, int RPM3) {
+        
+        changeX = 0;
+        return changeX;
+        
+    }
+    
+    public static int changeY(int RPM2, int RPM4) {
+        
+        changeY = 0;
+        return changeY;
+        
+    }
+    
+    public static int changeZ(int RPM1, int RPM2, int RPM3, int RPM4) {
+        
+        changeZ = 0;
+        return changeZ;
+        
+    }
     
     public static int RPM1() {
         
@@ -41,21 +65,21 @@ public class Quadcopter {
     
     public static int posZ() {
         
-        posZ = 0;
+        posZ = posZ + changeZ;
         return posZ;
         
     }
     
     public static int posY() {
         
-        posY = 0;
+        posY = posY + changeY;
         return posY;
         
     }
     
     public static int posX() {
         
-        posX = 0;
+        posX = posX + changeX;
         return posX;
         
     }
@@ -67,7 +91,7 @@ public class Quadcopter {
         else
             isFlying = false;
             
-        return isFlying;
+         return isFlying;
         
     }
 

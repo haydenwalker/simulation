@@ -19,6 +19,9 @@ public class Main {
         Quadcopter.RPM2();
         Quadcopter.RPM3();
         Quadcopter.RPM4();
+        Quadcopter.changeX(Quadcopter.RPM1, Quadcopter.RPM3);
+        Quadcopter.changeY(Quadcopter.RPM2, Quadcopter.RPM4);
+        Quadcopter.changeZ(Quadcopter.RPM1, Quadcopter.RPM2, Quadcopter.RPM3, Quadcopter.RPM4);
         Quadcopter.posX();
         Quadcopter.posY();
         Quadcopter.posZ();
@@ -35,7 +38,7 @@ public class Main {
         Quadcopter.posX = 0;
         Quadcopter.posY = 0;
         Quadcopter.posZ = 0;
-        
+        Quadcopter.isFlying(Quadcopter.posZ);
     }
     
 }
