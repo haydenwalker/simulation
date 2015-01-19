@@ -6,7 +6,7 @@ public class Printer {
     
     public static boolean isPrinting() {
         
-        isPrinting = false;
+        isPrinting = true;
         return isPrinting;
         
     }

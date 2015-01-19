@@ -44,7 +44,7 @@ public class Quadcopter {
     
     public static int RPM2() {
         
-        RPM2 = 30;
+        RPM2 = 40;
         return RPM2;
         
     }

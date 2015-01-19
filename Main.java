@@ -8,10 +8,11 @@ public class Main {
         
         JFrame f = new JFrame("Quadcopter Simulation");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(1000, 1000);
 		System.out.println("Welcome to the simulation");
         setup();
         int i = 0;
-        while(i <= 10) {
+        while(i <= 20) {
             tick(f);
             i += 1;
         }
@@ -30,11 +31,10 @@ public class Main {
         Quadcopter.isFlying(Quadcopter.posZ);
         Screen s = new Screen();
         f.add(s);
-        f.setSize(1000, 1000);
         f.setVisible(true);
         System.out.println(Quadcopter.posX + "x, " + Quadcopter.posY + "y, " + Quadcopter.posZ + "z");
         try {
-            Thread.sleep(4000);
+            Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
