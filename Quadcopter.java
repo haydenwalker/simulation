@@ -17,6 +17,7 @@ public class Quadcopter {
     public static int changeX(int RPM1, int RPM2, int RPM3, int RPM4) {
         
         changeX = ((RPM1 + RPM2) - (RPM3 + RPM4));
+        changeX = -10;
         return changeX;
         
     }
