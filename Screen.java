@@ -32,7 +32,7 @@ public class Screen extends JPanel{
         }
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("../Desktop/simulation/Quadcopter50x50.png"));
+            img = ImageIO.read(new File("../Documents/simulation/Quadcopter.png"));
         } catch (IOException e) {
         }
         g.drawImage(img, x-30, y-30, null);//Draws image at necessary point

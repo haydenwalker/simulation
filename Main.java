@@ -38,13 +38,13 @@ public class Main {
             JFrame f = new JFrame("Quadcopter Stimulation");
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setSize(1000, 1000);
-            System.out.println("Welcome to the stimulation");
+            System.out.println("Welcome to the simulation");
             setup();
             
             JFrame z = new JFrame("Up/Down Axis");
             z.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             z.setSize(300,300);
-            System.out.println("Up/Down Axis Stimulator Launched");
+            System.out.println("Up/Down Axis Simulator Launched");
             //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
             //z.setLocation(dim.width/2-z.getSize().width/2, dim.height/2-z.getSize().height/2);
             z.setLocationRelativeTo(f);
@@ -110,7 +110,7 @@ public class Main {
         ArrayList<String> lineArray = new ArrayList<String>();
         Scanner fileScan;
         int x=0;
-        fileScan = new Scanner (new File("../Desktop/simulation/Change.txt"));
+        fileScan = new Scanner (new File("../Documents/simulation/Change.txt"));
         while(fileScan.hasNext()){
             sentence = fileScan.nextLine();
             lineArray.add(sentence); // add() appends each line to lineArray
