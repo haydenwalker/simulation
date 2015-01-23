@@ -3,8 +3,8 @@ package simulation;
 public class Quadcopter {
 
     public static boolean isFlying;
-    public static int posX;
-    public static int posY;
+    public static int posX = 10;
+    public static int posY = 10;
     public static int posZ;
     public static int RPM1;
     public static int RPM2;

@@ -8,36 +8,77 @@ import java.util.Stack;
 import java.awt.event.*;
 import java.awt.image.*;
 import javax.imageio.*;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.util.Arrays;
+
 
 public class Main {
 	
-    
-	public static void main(String[] args) throws FileNotFoundException {
+    public static int prevX = 100;
+    public static int prevY = 100;
+    public static Scanner in = new Scanner(System.in);
+    public static List<Integer> changeValues = new ArrayList<Integer>();
 
-        //Opens JFrame
-        JFrame f = new JFrame("Quadcopter Stimulation");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(1000, 1000);
-        System.out.println("Welcome to the stimulation");
-        setup();
-        
-        List<Integer> changeValues = new ArrayList<Integer>();
-        changeValues = getValues();
-        
-        
-        int lineArraySize = changeValues.size() / 3;
-        for (int n = lineArraySize; n >= 0; n--){
-            tick(f);
+    
+    public static int lineArraySize;
+    
+    public static int[] positions = new int[100];
+    
+    public static int currentScreenThread = 0;
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        char s;
+        String inputStart;
+        System.out.printf("Start Simulation? y/n: ");
+        inputStart = in.nextLine();
+        s = inputStart.charAt(0);
+        if (s == 'y'){
+            //Opens JFrame
+            JFrame f = new JFrame("Quadcopter Stimulation");
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            f.setSize(1000, 1000);
+            System.out.println("Welcome to the stimulation");
+            setup();
+            
+            JFrame z = new JFrame("Up/Down Axis");
+            z.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            z.setSize(300,300);
+            System.out.println("Up/Down Axis Stimulator Launched");
+            //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            //z.setLocation(dim.width/2-z.getSize().width/2, dim.height/2-z.getSize().height/2);
+            z.setLocationRelativeTo(f);
+            
+            ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
+            lineArray = read(); //uses read method to fetch data from text file
+            changeValues = getValues();
+            
+            lineArraySize = changeValues.size() / 3;
+            
+            for (int n = lineArraySize; n >= 0; n--){
+                tick(f,z);
+            }
+            
         }
         
-            
+        else if (s == 'n'){
+            System.out.println("Goodbye");
+            System.exit(0);
+        }
+        else{
+            System.out.println("Symbol not recognized. Exiting.");
+            System.exit(0);
+        }
+    
 	}
     
     public static ArrayList<Integer> getValues() throws FileNotFoundException{
         ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
         lineArray = read(); //uses read method to fetch data from text file
         int bStringParsed = 0; //holds the value of bString after it is parsed
+        
         int lineArraySize = lineArray.size();
+        
         int numValues = lineArraySize * 3;
         ArrayList<Integer> changeValues = new ArrayList<Integer>(); // New ArrayList of Integers, used to store all integer values in text file, in order.
         System.out.println("LINEARRAYSIZE" + lineArraySize);
@@ -77,8 +118,10 @@ public class Main {
         return lineArray;
     }
     public static int k = 0;
-    public static void tick(JFrame f) throws FileNotFoundException {
+    
+    public static void tick(JFrame f, JFrame z) throws FileNotFoundException {
         
+        int size = (10000/(500-Quadcopter.posZ()));
         List<Integer> changeValues = new ArrayList<Integer>();
         changeValues = getValues();
         
@@ -92,16 +135,17 @@ public class Main {
         Quadcopter.posZ();
         Quadcopter.isFlying(Quadcopter.posZ);
         if (Quadcopter.posZ > 3){ //Makes sure it doesn't fly up out of screen (Gravity?)
-            Quadcopter.posZ -= 1;
+            Quadcopter.posZ -= 0.1;
         }
         
-        Quadcopter.changeX = changeValues.get(k);
-        Quadcopter.changeY = changeValues.get(k+1);
-        //Quadcopter.chanzeZ = changeValues.get(k+2);
+        Quadcopter.posX = changeValues.get(k);
+        Quadcopter.posY = changeValues.get(k+1);
+        //Quadcopter.posZ = changeValues.get(k+2);
         
         Screen s = new Screen();
         f.add(s);
         f.setVisible(true);
+        
         System.out.println(Quadcopter.posX + "x, " + Quadcopter.posY + "y, " + Quadcopter.posZ + "z");
         try {
             Thread.sleep(2000);
@@ -111,6 +155,8 @@ public class Main {
         if (k < changeValues.size() - 3){
             k += 3;
         }
+
+        
     }
     
     public static void setup() {
