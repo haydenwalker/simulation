@@ -1,3 +1,13 @@
+//_____________________________________________________________________________________________________________________________
+//
+// By Hayden Walker and Connor Bailey
+// Renders a JPanel with a simulated quadcopter that flies to specified coordinates and "extrudes" a line behind it.
+//
+//_____________________________________________________________________________________________________________________________
+
+
+
+
 package simulation;
 
 import javax.swing.*;
@@ -16,15 +26,11 @@ import java.util.Arrays;
 
 public class Main {
 	
-    public static int prevX = 100;
-    public static int prevY = 100;
     public static Scanner start = new Scanner(System.in);
     public static Scanner whatToPrintScanner = new Scanner(System.in);
     public static List<Integer> changeValues = new ArrayList<Integer>();
     public static int numTick = 0;
     public static int whatToPrint;
-
-    
     public static int lineArraySize;
     
     public static void main(String[] args) throws FileNotFoundException {
@@ -33,6 +39,8 @@ public class Main {
         System.out.println("Options: [1] Cube (Isometric Projection)");
         System.out.println("         [2] Triangle");
         System.out.println("         [3] Square");
+        System.out.println("         [4] Solid Rectangle");
+        System.out.println("         [5] Change.txt (Input your own coordinates to Change.txt)");
         whatToPrint = whatToPrintScanner.nextInt();
         
         char s;
@@ -77,7 +85,6 @@ public class Main {
         }
     
 	}
-    
     public static ArrayList<Integer> getValues() throws FileNotFoundException{
         ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
         lineArray = read(); //uses read method to fetch data from text file
@@ -87,7 +94,10 @@ public class Main {
         
         int numValues = lineArraySize * 3;
         ArrayList<Integer> changeValues = new ArrayList<Integer>(); // New ArrayList of Integers, used to store all integer values in text file, in order.
-        System.out.println("No. Points" + lineArraySize);
+        
+        if (numTick < 1){
+            System.out.println("Number of Points: " + lineArraySize);
+        }
         
         int i = 0;
         int j = 0;
@@ -124,6 +134,9 @@ public class Main {
         else if (whatToPrint  == 3){
             fileScan = new Scanner (new File("../Desktop/simulation/square.txt"));
         }
+        else if (whatToPrint  == 4){
+            fileScan = new Scanner (new File("../Desktop/simulation/solid.txt"));
+        }
         else{
             fileScan = new Scanner (new File("../Desktop/simulation/Change.txt"));
         }
@@ -137,22 +150,8 @@ public class Main {
     
     public static void tick(JFrame f, JFrame z) throws FileNotFoundException {
         numTick++;
-        int size = (10000/(500-Quadcopter.posZ()));
         List<Integer> changeValues = new ArrayList<Integer>();
         changeValues = getValues();
-        
-        Quadcopter.RPM1();
-        Quadcopter.RPM2();
-        Quadcopter.RPM3();
-        Quadcopter.RPM4();
-        Quadcopter.changeX(Quadcopter.RPM1, Quadcopter.RPM2, Quadcopter.RPM3, Quadcopter.RPM4);
-        Quadcopter.changeY(Quadcopter.RPM1, Quadcopter.RPM2, Quadcopter.RPM3, Quadcopter.RPM4);
-        Quadcopter.changeZ(Quadcopter.RPM1, Quadcopter.RPM2, Quadcopter.RPM3, Quadcopter.RPM4);
-        Quadcopter.posZ();
-        Quadcopter.isFlying(Quadcopter.posZ);
-        if (Quadcopter.posZ > 3){ //Makes sure it doesn't fly up out of screen (Gravity?)
-            Quadcopter.posZ -= 0.1;
-        }
         
         Quadcopter.posX = changeValues.get(k);
         Quadcopter.posY = changeValues.get(k+1);
@@ -161,10 +160,16 @@ public class Main {
         System.out.println(Quadcopter.posX + "x, " + Quadcopter.posY + "y, " + Quadcopter.posZ + "z");
 
         try {
-            Thread.sleep(500);
+            if (whatToPrint  == 4){
+                Thread.sleep(50);
+            }
+            else{
+                Thread.sleep(500);
+            }
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        
         if (k < changeValues.size() - 3){
             k += 3;
         }
@@ -177,11 +182,6 @@ public class Main {
     }
     
     public static void setup() {
-        
-        Quadcopter.RPM1 = 0;
-        Quadcopter.RPM2 = 0;
-        Quadcopter.RPM3 = 0;
-        Quadcopter.RPM4 = 0;
         Quadcopter.posX = 0;
         Quadcopter.posY = 0;
         Quadcopter.posZ = 0;
