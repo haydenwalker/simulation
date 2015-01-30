@@ -22,6 +22,11 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.Arrays;
 
+<<<<<<< HEAD:src/simulation/Main.java
+=======
+
+
+>>>>>>> FETCH_HEAD:Main.java
 public class Main {
 	
     public static Scanner start = new Scanner(System.in);
@@ -59,7 +64,11 @@ public class Main {
             JFrame z = new JFrame("Up/Down Axis");
             z.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             z.setSize(300,300);
+<<<<<<< HEAD:src/simulation/Main.java
             System.out.println("Up/Down Axis Simulator Launched");
+=======
+            System.out.println("Up/Down Axis Stimulator Launched");
+>>>>>>> FETCH_HEAD:Main.java
         
             z.setLocationRelativeTo(f);
             
@@ -86,7 +95,6 @@ public class Main {
         }
     
 	}
-    
     public static ArrayList<Integer> getValues() throws FileNotFoundException{
         ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
         lineArray = read(); //uses read method to fetch data from text file
@@ -128,6 +136,7 @@ public class Main {
         Scanner fileScan;
         int x=0;
         if (whatToPrint == 1){
+<<<<<<< HEAD:src/simulation/Main.java
             fileScan = new Scanner (new File("../txt/cube.txt"));
         }
         else if (whatToPrint  == 2){
@@ -141,6 +150,21 @@ public class Main {
         }
         else{
             fileScan = new Scanner (new File("../txt/Change.txt"));
+=======
+            fileScan = new Scanner (new File("../Desktop/simulation/cube.txt"));
+        }
+        else if (whatToPrint  == 2){
+            fileScan = new Scanner (new File("../Desktop/simulation/triangle.txt"));
+        }
+        else if (whatToPrint  == 3){
+            fileScan = new Scanner (new File("../Desktop/simulation/square.txt"));
+        }
+        else if (whatToPrint  == 4){
+            fileScan = new Scanner (new File("../Desktop/simulation/solid.txt"));
+        }
+        else{
+            fileScan = new Scanner (new File("../Desktop/simulation/Change.txt"));
+>>>>>>> FETCH_HEAD:Main.java
         }
         while(fileScan.hasNext()){
             sentence = fileScan.nextLine();

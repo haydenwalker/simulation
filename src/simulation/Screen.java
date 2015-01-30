@@ -35,6 +35,7 @@ public class Screen extends JPanel{
         if(Printer.isPrinting()) {
             isItPrinting = true;
         }
+<<<<<<< HEAD:src/simulation/Screen.java
         BufferedImage img = null;
         
         try {
@@ -44,6 +45,14 @@ public class Screen extends JPanel{
         
         g.drawImage(img, x-25, y-25, null); //Draws image at necessary point
         
+=======
+        BufferedImage img = null;         try {
+            img = ImageIO.read(new File("../Desktop/simulation/Quadcopter50x50.png"));
+        } catch (IOException e) {
+        }
+        g.drawImage(img, x-25, y-25, null);//Draws image at necessary point
+        
+>>>>>>> FETCH_HEAD:Screen.java
         int changeValuesSize = Main.changeValues.size();
         
         if (Main.numTick > ((changeValuesSize)/3)){
