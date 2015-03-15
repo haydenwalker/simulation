@@ -14,7 +14,6 @@ public class Screen extends JPanel{
     
     static int initX = 100;
     static int initY = 100;
-
     
     public int x = Quadcopter.posX() + initX;
     public int y = Quadcopter.posY() + initY;
@@ -35,8 +34,6 @@ public class Screen extends JPanel{
         if(Printer.isPrinting()) {
             isItPrinting = true;
         }
-<<<<<<< HEAD:src/simulation/Screen.java
-        BufferedImage img = null;
         
         try {
             img = ImageIO.read(new File("../img/Quadcopter.png"));
@@ -45,15 +42,13 @@ public class Screen extends JPanel{
         
         g.drawImage(img, x-25, y-25, null); //Draws image at necessary point
         
-=======
-        BufferedImage img = null;         try {
+        BufferedImage img = null;
+        try {
             img = ImageIO.read(new File("../Desktop/simulation/Quadcopter50x50.png"));
         } catch (IOException e) {
         }
         g.drawImage(img, x-25, y-25, null);//Draws image at necessary point
-        
->>>>>>> FETCH_HEAD:Screen.java
-        int changeValuesSize = Main.changeValues.size();
+                int changeValuesSize = Main.changeValues.size();
         
         if (Main.numTick > ((changeValuesSize)/3)){
             int go = 0;
