@@ -59,6 +59,8 @@ public class Main {
             JFrame z = new JFrame("Up/Down Axis");
             z.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             z.setSize(300,300);
+            System.out.println("Up/Down Axis Simulator Launched");
+        
             z.setLocationRelativeTo(f);
             
             ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
@@ -84,6 +86,7 @@ public class Main {
         }
     
 	}
+    
     public static ArrayList<Integer> getValues() throws FileNotFoundException{
         ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
         lineArray = read(); //uses read method to fetch data from text file
@@ -136,17 +139,8 @@ public class Main {
         else if (whatToPrint  == 4){
             fileScan = new Scanner (new File("../txt/solid.txt"));
         }
-        else if (whatToPrint  == 2){
-            fileScan = new Scanner (new File("../Desktop/simulation/triangle.txt"));
-        }
-        else if (whatToPrint  == 3){
-            fileScan = new Scanner (new File("../Desktop/simulation/square.txt"));
-        }
-        else if (whatToPrint  == 4){
-            fileScan = new Scanner (new File("../Desktop/simulation/solid.txt"));
-        }
         else{
-            fileScan = new Scanner (new File("../Desktop/simulation/Change.txt"));
+            fileScan = new Scanner (new File("../txt/Change.txt"));
         }
         while(fileScan.hasNext()){
             sentence = fileScan.nextLine();
