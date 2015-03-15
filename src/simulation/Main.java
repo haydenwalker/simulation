@@ -23,16 +23,16 @@ import java.awt.Toolkit;
 import java.util.Arrays;
 
 public class Main {
-	
+
     public static Scanner start = new Scanner(System.in);
     public static Scanner whatToPrintScanner = new Scanner(System.in);
     public static List<Integer> changeValues = new ArrayList<Integer>();
     public static int numTick = 0;
     public static int whatToPrint;
     public static int lineArraySize;
-    
+
     public static void main(String[] args) throws FileNotFoundException {
-        
+
         System.out.println("What would you like to print?");
         System.out.println("Options: [1] Cube (Isometric Projection)");
         System.out.println("         [2] Triangle");
@@ -40,67 +40,65 @@ public class Main {
         System.out.println("         [4] Solid Rectangle");
         System.out.println("         [5] Change.txt (Input your own coordinates to Change.txt)");
         whatToPrint = whatToPrintScanner.nextInt();
-        
+
         char s;
         String inputStart;
         System.out.printf("Start Simulation? y/n: ");
         inputStart = start.nextLine();
         s = inputStart.charAt(0);
-        
+
         if (s == 'y'){
-            
+
             //Opens JFrame
             JFrame f = new JFrame("Quadcopter Stimulation");
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setSize(1000, 1000);
             System.out.println("Welcome to the simulation");
             setup();
-            
+
             JFrame z = new JFrame("Up/Down Axis");
             z.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             z.setSize(300,300);
             System.out.println("Up/Down Axis Simulator Launched");
-        
             z.setLocationRelativeTo(f);
-            
+
             ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
             lineArray = read(); //uses read method to fetch data from text file
             changeValues = getValues();
-            
             lineArraySize = changeValues.size() / 3;
-            
+
             for (int n = lineArraySize; n >= 0; n--){
                 tick(f,z);
             }
-            
+
         }
-        
+
         else if (s == 'n'){
             System.out.println("Goodbye");
             System.exit(0);
         }
-        
+
         else{
             System.out.println("Symbol not recognized. Exiting.");
             System.exit(0);
         }
-    
+
 	}
-    
+
     public static ArrayList<Integer> getValues() throws FileNotFoundException{
         ArrayList<String> lineArray = new ArrayList<String>(); //lineArray holds all values in text file, lines separated by commas
         lineArray = read(); //uses read method to fetch data from text file
         int bStringParsed = 0; //holds the value of bString after it is parsed
-        
+
         int lineArraySize = lineArray.size();
-        
+
         int numValues = lineArraySize * 3;
         ArrayList<Integer> changeValues = new ArrayList<Integer>(); // New ArrayList of Integers, used to store all integer values in text file, in order.
-        
+
         if (numTick < 1){
             System.out.println("Number of Points: " + lineArraySize);
         }
-        
+
         int i = 0;
         int j = 0;
         int h = 0;
@@ -121,7 +119,7 @@ public class Main {
         i = 0;
         return changeValues;
     }
-    
+
     public static ArrayList<String> read() throws FileNotFoundException{ //Returns value of type ArrayList<String>
         String sentence = "test"; //sentence used to hold each line
         ArrayList<String> lineArray = new ArrayList<String>();
@@ -149,16 +147,15 @@ public class Main {
         return lineArray;
     }
     public static int k = 0;
-    
+
     public static void tick(JFrame f, JFrame z) throws FileNotFoundException {
         numTick++;
         List<Integer> changeValues = new ArrayList<Integer>();
         changeValues = getValues();
-        
+
         Quadcopter.posX = changeValues.get(k);
         Quadcopter.posY = changeValues.get(k+1);
-        
-        
+
         System.out.println(Quadcopter.posX + "x, " + Quadcopter.posY + "y, " + Quadcopter.posZ + "z");
 
         try {
@@ -171,23 +168,25 @@ public class Main {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        
+
         if (k < changeValues.size() - 3){
             k += 3;
         }
-        
-        
+
+
         Screen s = new Screen();
         f.add(s);
         f.setVisible(true);
-        
+				Screen2 d = new Screen2();
+				z.add(d);
+				z.setVisible(true);
     }
-    
+
     public static void setup() {
         Quadcopter.posX = 0;
         Quadcopter.posY = 0;
         Quadcopter.posZ = 0;
         Quadcopter.isFlying(Quadcopter.posZ);
     }
-    
+
 }
