@@ -12,8 +12,8 @@ import javax.imageio.*;
 
 public class Screen2 extends JPanel{
 
-    public int x = 1;
-    public int y = 1;
+    public int x = Quadcopter.posX;
+    public int y = Quadcopter.posY;
     public int size = 1000;
     public void paintComponent(Graphics g){
 
@@ -24,11 +24,12 @@ public class Screen2 extends JPanel{
         BufferedImage img = null;
 
         try {
-            img = ImageIO.read(new File("../img/Quadcopter.png"));
+            img = ImageIO.read(new File("../img/Side.png"));
         }
 
         catch (IOException e) { }
 
-        g.drawImage(img, x-25, y-25, null); //Draws image at necessary point
+        g.drawLine(0, 250, 300, 250);
+        g.drawImage(img, Quadcopter.posX, Quadcopter.posZ+110, null); //Draws image at necessary point
     }
 }

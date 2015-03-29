@@ -177,9 +177,9 @@ public class Main {
         Screen s = new Screen();
         f.add(s);
         f.setVisible(true);
-				Screen2 d = new Screen2();
-				z.add(d);
-				z.setVisible(true);
+        Screen2 d = new Screen2();
+        z.add(d);
+        z.setVisible(true);
     }
 
     public static void setup() {

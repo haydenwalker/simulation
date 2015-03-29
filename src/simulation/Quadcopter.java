@@ -31,7 +31,7 @@ public class Quadcopter {
     
     public static int changeZ(int RPM1, int RPM2, int RPM3, int RPM4) {
         
-        changeZ = (RPM1 + RPM2 + RPM3 + RPM4)/8;
+        changeZ = ((RPM1 + RPM2 + RPM3 + RPM4)/8)-30;
         return changeZ;
         
     }
